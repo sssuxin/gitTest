@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router-3.0.1.js"></script>
+    <style>
+        html,body{
+            margin: 0;
+        }
+        .header{
+            height: 80px;
+            margin: 0;
+            background-color: yellow;
+        }
+        .container{
+            margin: 0;
+            display: flex;
+            height: 600px;
+        }
+        .leftBox{
+            margin: 0;
+            flex: 2;
+            background-color: blue;
+        }
+        .rightBox{
+            margin: 0;
+            flex: 8;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-view name="header" class="header"></router-view>
+        <div class="container">
+            <router-view name="leftBox" class="leftBox"></router-view>
+            <router-view name="rightBox" class="rightBox"></router-view>
+        </div>
+    </div>
+    <script>
+        var header={
+            template:"<h1>Header</h1>"
+        }
+        var leftBox={
+            template:"<h1>leftBox</h1>"
+        }
+        var rightBox={
+            template:"<h1>rightBox</h1>"
+        }
+        var router = new VueRouter({
+            routes: [
+                {path:"/",components:{
+                    'header' : header,
+                    'leftBox' : leftBox,
+                    'rightBox' : rightBox
+                    }
+                }
+            ]
+        });
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{},
+           router
+        });
+    </script>
+</body>
+
+</html>

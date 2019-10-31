@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom1></mycom1>
+    </div>
+
+<div id="app2">
+    <mycom1></mycom1>
+    <personal></personal>
+</div>
+
+    <template id="tem1">
+        <div>
+            <h2>
+                这是通过 template元素，在外部定义的组件结构，这个方式，能提高代码的高亮度
+            </h2>
+        </div>
+    </template>
+    <template id="tem2">
+            <div><h3>这是一个私有组件</h3></div>
+    </template>
+    <script>
+        Vue.component('mycom1',{
+            template: "#tem1"
+        });
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{}
+        });
+
+        var vm2=new Vue({
+           el:'#app2',
+           data:{},
+           methods:{},
+           filters:{},
+           directives:{},
+           components:{
+               personal:{
+                   template: "#tem2"
+               }
+           },
+
+           beforeCreate() {
+               
+           },
+           created() {
+               
+           },
+           beforeMount() {
+               
+           },
+           mounted() {
+               
+           },
+           beforeUpdate() {
+               
+           },
+           updated() {
+               
+           },
+           beforeDestroy() {
+               
+           },
+           destroyed() {
+               
+           },
+        });
+    </script>
+</body>
+
+</html>

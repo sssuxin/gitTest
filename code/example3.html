@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <link rel="stylesheet" href="./lib/animate.css">
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <transition
+            enter-active-class="animated bounceIn"
+            leave-active-class="animated bounceOut"
+        >
+            <h1 v-if="flag">测试渐入渐出效果</h1>
+        </transition>
+        <transition
+            enter-active-class="animated bounceInDown"
+            leave-active-class="animated bounceOutDown"
+        >
+            <h1 v-if="flag">测试渐入渐出效果</h1>
+        </transition>
+        <transition
+            enter-active-class="animated bounceInLeft"
+            leave-active-class="animated bounceOutLeft"
+        >
+            <h1 v-if="flag">测试渐入渐出效果</h1>
+        </transition>
+        <transition
+            enter-active-class="animated bounceInRight"
+            leave-active-class="animated bounceOutRight"
+        >
+            <h1 v-if="flag">测试渐入渐出效果</h1>
+        </transition>
+        <transition
+            enter-active-class="animated bounceInUp"
+            leave-active-class="animated bounceOutUp"
+        >
+            <h1 v-if="flag">测试渐入渐出效果</h1>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+           el:'#app',
+           data:{
+               flag:false
+           },
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router-3.0.1.js"></script>
+    <style>
+        .myclass{
+            color: royalblue;
+            font-size : 30px;
+            font-weight: 100;
+        }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateY(80px);
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.6s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- vue-router提供的占位符，用来展示路由匹配的组件 -->
+        <!-- <a href="#/login">登录</a>
+        <a href="#/register">注册</a> -->
+        <!-- router-link默认显示a标签，可以通过  tag该表标签类型如:span  label...但是不会改变绑定的方法 -->
+        <router-link to="login" tag="span">登录</router-link>
+        <router-link to="register">注册</router-link>
+        <transition mode="out-in">
+                <router-view></router-view>
+        </transition>
+    </div>
+    <template id="login">
+        <div>
+            <h1>登录模板</h1>
+        </div>
+    </template>
+    <template id="register">
+            <div>
+                <h1>注册模板</h1>
+            </div>
+        </template>
+    <script>
+        var login={
+            template:"#login"
+        }
+        Vue.component("login2",{
+            template:"<h1>登陆模板2</h2>"
+        });
+        var register={
+            template:"#register"
+        }
+        //引用之后就可以创建 VueRouter对象了
+        //可以传递一个配置对象，只有在对象创建之后才能打开页面中显示#/
+        var router = new VueRouter({
+            //routes属性表示会有多个路由，表示匹配多个路由规则(一个path对应一个组件)
+            //属性1：path，表示监听，由哪个路由链接地址
+            //属性2：component，表示，如果路由匹配到path，则展示对应的组件对象
+            //      属性2必须为组件对象而不能是引用名
+            routes: [
+              //  {path:"/",component:login},
+                {path:"/",redirect:"/login"},
+                {path:"/login",component:login},
+                {path:"/register",component:register}
+            ],
+            linkActiveClass : "myclass"
+            
+            
+        })
+
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{},
+           
+           router:router//将路由对象注册到vm实例上用来监听url变化展示不同组件
+        });
+    </script>
+</body>
+
+</html>

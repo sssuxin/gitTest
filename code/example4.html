@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+        .ball{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <transition
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @enter_cancelled="enterCancelled"
+        >
+            <div class="ball" v-show="flag"></div>
+        </transition>
+    </div>
+    <script>
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               flag: false
+           },
+           methods:{
+                beforeEnter(el){
+                    //初始移动位置
+                    el.style.transform="translate(0px,0px)";
+                },
+                enter(el,done){//done为回调函数，表示立即执行afterEnter函数
+                    //这句没有实际作用，加上会有动画效果
+                    el.offsetWidth;
+                    //设置小球移动后的位置
+                    el.style.transform="translate(150px,450px)";
+                    el.style.transition="all 1s ease";
+                    done();
+                },
+                afterEnter(el){
+                    this.flag=!this.flag;
+                },
+                enterCancelled(el){
+
+                }
+           }
+        });
+    </script>
+</body>
+
+</html>
