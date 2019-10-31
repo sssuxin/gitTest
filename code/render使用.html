@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        33333
+    </div>
+    <script>
+        var temp1={
+            template:"<div><h1>这是一个登录组件</h1></div>"
+        }
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{},
+           components:{
+               temp1
+           },
+           render:function(creatElements) {
+               //render会将父节点内容全部替换，而直接使用组件则是类似append使用
+               var html = creatElements(temp1);
+               return html;
+           },
+        });
+    </script>
+</body>
+
+</html>

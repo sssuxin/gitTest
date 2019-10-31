@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom1>
+
+        </mycom1>
+        <mycom2></mycom2>
+    </div>
+    <script>
+
+        var com1 = Vue.extend({
+            template:'<div>这是一个由 Vue.extend创建的组件</div>'
+        });
+        //若组件命名时以驼峰方式，则在使用时需要把大写的驼峰字母改为小写并以-分隔
+        //Vue.component('myCom1',com1);
+        Vue.component('mycom1',com1);
+        Vue.component('mycom2',{
+            template:'<div><h1>第一种方式的不同代码表现</h1></div>'
+        });
+
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{}
+        });
+
+        
+    </script>
+</body>
+
+</html>
